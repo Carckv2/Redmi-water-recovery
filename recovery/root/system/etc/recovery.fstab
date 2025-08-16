@@ -1,0 +1,38 @@
+# Android fstab file for TWRP on Redmi A2 (water)
+# Dynamic super partitions + FBE decryption + f2fs userdata
+
+#<src>                                     <mnt_point>  <type>   <mnt_flags>                                            <fs_mgr_flags>
+
+# Boot and recovery
+/dev/block/platform/bootdevice/by-name/boot       /boot        emmc    defaults                                         defaults
+/dev/block/platform/bootdevice/by-name/recovery   /recovery    emmc    defaults                                         defaults
+/dev/block/platform/bootdevice/by-name/dtbo       /dtbo        emmc    defaults                                         defaults
+/dev/block/platform/bootdevice/by-name/vbmeta     /vbmeta      emmc    defaults                                         defaults
+/dev/block/platform/bootdevice/by-name/vbmeta_system /vbmeta_system emmc defaults                                      defaults
+
+# Metadata
+/dev/block/platform/bootdevice/by-name/metadata   /metadata    ext4    noatime,nosuid,nodev,barrier=1                    wait,check,formattable
+
+# Userdata (FBE + f2fs)
+/dev/block/platform/bootdevice/by-name/userdata   /data        f2fs    noatime,nosuid,nodev,discard,fsync_mode=nobarrier wait,check,quota,formattable,resize,latemount,wrappedkey,checkpoint=fs,quota,metadata_encryption
+
+# Cache
+/dev/block/platform/bootdevice/by-name/cache      /cache       ext4    noatime,nosuid,nodev,barrier=1                    wait,check,formattable
+
+# Persist
+/dev/block/platform/bootdevice/by-name/persist    /persist     ext4    noatime,nosuid,nodev,barrier=1                    wait,check,formattable
+
+# Super partition (Dynamic Partitions)
+/dev/block/platform/bootdevice/by-name/super      /super       emmc    defaults                                         defaults
+
+# Logical partitions
+/system                                            /system     ext4    ro,barrier=1                                     wait,logical,first_stage_mount
+/vendor                                            /vendor     ext4    ro,barrier=1                                     wait,logical,first_stage_mount
+/product                                           /product    ext4    ro,barrier=1                                     wait,logical,first_stage_mount
+/odm                                               /odm        ext4    ro,barrier=1                                     wait,logical,first_stage_mount
+
+# External SD
+/devices/platform/11230000.mmc/mmc_host*/*         /external_sd vfat    nosuid,nodev                                    wait,voldmanaged=sdcard1:auto,encryptable=footer
+
+# USB OTG
+/devices/platform/11230000.usb*/*                  /usb_otg    vfat    nosuid,nodev                                    wait,voldmanaged=usb:auto

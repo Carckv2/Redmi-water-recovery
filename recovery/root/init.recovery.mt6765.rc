@@ -1,0 +1,21 @@
+on init
+    export LD_SHIM_LIBS "/system/lib64/libhidlbase.so|libshim_vold.so"
+    symlink /dev/block/platform/bootdevice/by-name /dev/block/bootdevice/by-name
+
+on fs
+    mount_all /system/etc/recovery.fstab --early
+    swapon_all /system/etc/recovery.fstab
+
+on post-fs
+    mount_all /system/etc/recovery.fstab --late
+
+# Allow adb in recovery
+service adbd /sbin/adbd recovery
+    class main
+    seclabel u:r:adbd:s0
+    disabled
+    socket adbd stream 660 system system
+    writepid /dev/cpuset/foreground/tasks
+
+on property:sys.usb.config=adb
+    start adbd

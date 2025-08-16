@@ -1,0 +1,11 @@
+# Permissions for TWRP recovery
+
+/dev/block/platform/bootdevice/by-name/*   0660   system   system
+/dev/block/zram*                           0660   root     system
+/dev/block/loop*                           0660   root     system
+
+/sys/class/leds/*/brightness               0664   system   system
+/sys/class/backlight/*/brightness          0664   system   system
+
+/dev/ion                                   0666   system   system
+/dev/kmsg                                  0600   root     root

@@ -1,0 +1,7 @@
+cc_library_static {
+    name: "libinit_water",
+    srcs: ["init_water.cpp"],
+    cflags: ["-Wall"],
+    static_libs: ["libbase"],
+    recovery_available: true,
+}

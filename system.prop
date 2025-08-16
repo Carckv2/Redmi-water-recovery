@@ -1,0 +1,18 @@
+# Dynamic Partitions
+ro.boot.dynamic_partitions=true
+
+# Encryption
+ro.crypto.volume.filenames_mode=aes-256-cts
+
+# USB / ADB
+persist.sys.usb.config=mtp,adb
+persist.service.adb.enable=1
+persist.service.debuggable=1
+ro.adb.secure=0
+
+# Boot / Platform
+ro.boot.boot_devices=bootdevice,soc/11230000.mmc,11230000.mmc
+ro.vendor.mediatek.platform=MT6765
+
+# Timezone (optional, usually not required in recovery)
+persist.sys.timezone=Asia/Kathmandu
