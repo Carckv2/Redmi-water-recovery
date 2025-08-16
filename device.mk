@@ -10,7 +10,6 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
-PRODUCT_RETROFIT_DYNAMIC_PARTITIONS := true
 
 # Fastbootd support (for GSI flashing from recovery)
 PRODUCT_PACKAGES += \
