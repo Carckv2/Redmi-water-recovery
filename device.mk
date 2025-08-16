@@ -11,6 +11,19 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 # Dynamic Partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
+# Define A/B partitions
+AB_OTA_PARTITIONS += \
+    boot \
+    dtbo \
+    system \
+    vendor \
+    product \
+    vbmeta \
+    vbmeta_system \
+    vbmeta_vendor \
+    odm
+
+
 # Fastbootd support (for GSI flashing from recovery)
 PRODUCT_PACKAGES += \
     fastbootd \
